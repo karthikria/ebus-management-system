@@ -80,6 +80,8 @@ https://github.com/user-attachments/assets/63585c76-62ee-44ac-8dc0-a5d1a08f42c5
     ".write": true
   }
 }
+
+
 Copy your config and paste into firebase-config.js
 
  2️⃣ Google Maps Setup
@@ -88,6 +90,7 @@ Copy your config and paste into firebase-config.js
 - Generate an API Key
 - In map.html, replace:
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
 ## developed by
 
 Name: Karthik S
