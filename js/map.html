@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Bus Tracker</title>
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div style="background-color: black;"><button style="background-color: rgb(14, 212, 238);z-index: 2;width: 200px;height: 20px; border-radius: 15px;border: none;  box-shadow: 2px 2px 20px rgb(14, 212, 238);margin: 10px;"><a href="\view.html" style="color: white;text-decoration: none;">return</a></button></div>
+  <div id="map">
+    
+  </div>
+
+  <!-- ✅ Combined Firebase + Google Maps Integration -->
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCShoUmoKPmn9IjfJ4btesylMvlPb6wUQg",
+  authDomain: "ebuslocationsystem.firebaseapp.com",
+  databaseURL:"https://ebuslocationsystem-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ebuslocationsystem",
+  storageBucket: "ebuslocationsystem.firebasestorage.app",
+  messagingSenderId: "522349780649",
+  appId: "1:522349780649:web:8b772d94ed7aeed225d3b8",
+  measurementId: "G-RSZL3SKDSJ"
+    };
+
+    // Load Firebase modules dynamically
+    const loadFirebase = async () => {
+      const appModule = await import("https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js");
+      const dbModule = await import("https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js");
+
+      const app = appModule.initializeApp(firebaseConfig);
+      const database = dbModule.getDatabase(app);
+
+      const busId = "BUS101";
+      const locationRef = dbModule.ref(database, `bus_locations/${busId}`);
+
+      // Define global function for map to use when Firebase is ready
+      window.firebaseDataReady = (callback) => {
+        dbModule.onValue(locationRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data && data.latitude && data.longitude) {
+            callback({ lat: data.latitude, lng: data.longitude });
+          } else {
+            alert("No location data available for " + busId);
+          }
+        });
+      };
+
+      // If Maps tried to start before Firebase was ready
+      if (window.mapsInitRequested && typeof window.mapsCallback === "function") {
+        window.mapsCallback();
+      }
+    };
+
+    loadFirebase();
+
+    // ✅ Google Maps init function
+    function initMap() {
+      if (typeof window.firebaseDataReady === "function") {
+        window.firebaseDataReady(({ lat, lng }) => {
+          const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat, lng },
+            zoom: 14
+          });
+
+          new google.maps.Marker({
+            position: { lat, lng },
+            map,
+            title: "Live Bus Location"
+          });
+        });
+      } else {
+        // Firebase isn't ready yet — store for later
+        window.mapsInitRequested = true;
+        window.mapsCallback = initMap;
+      }
+    }
+
+    window.initMap = initMap;
+  </script>
+
+  <!-- ✅ Load Google Maps (async + defer) -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYmrcSyqhJHx1JOBJmiDIlV4Eu5r-8Wjo&callback=initMap">
+  </script>
+</body>
+</html>

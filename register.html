@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+ <div class="container"> <h2>Register</h2>
+  <input id="email" placeholder="Email"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="handleRegister()">Register</button>
+  <p>Already have an account? <a href="index.html">Login</a></p></div>
+  <script type="module">
+    import { register } from './js/auth.js';
+    window.handleRegister = () => {
+      register(email.value, password.value).then(() => {
+        alert("Registered!");
+        window.location.href = "index.html";
+      }).catch(err => alert(err.message));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <div class="container">
+  <h2>Login</h2>
+  <input id="email" placeholder="Email"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="handleLogin()">Login</button>
+  <p>Don't have an account? <a href="register.html">Register</a></p>
+ </div>
+  <script type="module">
+    import { login } from './js/auth.js';
+    window.handleLogin = () => {
+      login(email.value, password.value).then(() => {
+        window.location.href = "dashboard.html";
+      }).catch(err => alert(err.message));
+    }
+  </script>
+</body>
+</html>

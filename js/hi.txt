@@ -1,0 +1,21 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyCShoUmoKPmn9IjfJ4btesylMvlPb6wUQg",
+  authDomain: "ebuslocationsystem.firebaseapp.com",
+  projectId: "ebuslocationsystem",
+  storageBucket: "ebuslocationsystem.firebasestorage.app",
+  messagingSenderId: "522349780649",
+  appId: "1:522349780649:web:8b772d94ed7aeed225d3b8",
+  measurementId: "G-RSZL3SKDSJ"
+};
+
+AIzaSyDYmrcSyqhJHx1JOBJmiDIlV4Eu5r-8Wjo
+
+
+  apiKey: "AIzaSyCShoUmoKPmn9IjfJ4btesylMvlPb6wUQg",
+  authDomain: "ebuslocationsystem.firebaseapp.com",
+  databaseURL:"https://ebuslocationsystem-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ebuslocationsystem",
+  storageBucket: "ebuslocationsystem.firebasestorage.app",
+  messagingSenderId: "522349780649",
+  appId: "1:522349780649:web:8b772d94ed7aeed225d3b8",
+  measurementId: "G-RSZL3SKDSJ"
