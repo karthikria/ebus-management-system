@@ -73,18 +73,15 @@ https://github.com/user-attachments/assets/63585c76-62ee-44ac-8dc0-a5d1a08f42c5
 - Enable **Authentication → Email/Password**
 - Enable **Realtime Database**, set rules to public for testing:
 
-```json
 {
   "rules": {
     ".read": true,
     ".write": true
   }
 }
-
-
 Copy your config and paste into firebase-config.js
 
- 2️⃣ Google Maps Setup
+2️⃣ Google Maps Setup
 - Go to Google Cloud Console
 - Enable: Maps JavaScript API
 - Generate an API Key
